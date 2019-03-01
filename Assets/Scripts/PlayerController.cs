@@ -5,8 +5,6 @@ public class PlayerController : MonoBehaviour
 {
 
 	public float speed;
-	public Text countText;
-	public Text winText;
 	public string pickUpTag = "PickUp";
 
 	Rigidbody2D rb2d;
@@ -16,10 +14,8 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
-		winText.text = string.Empty;
 		pickUpsTotal = GameObject.FindGameObjectsWithTag(pickUpTag).Length;
 		count = 0;
-		SetCountText();
 	}
 
 	void FixedUpdate()
@@ -36,16 +32,6 @@ public class PlayerController : MonoBehaviour
 		{
 			other.gameObject.SetActive(false);
 			count += 1;
-			SetCountText();
-		}
-	}
-
-	void SetCountText()
-	{
-		countText.text = $"Count: {count}";
-		if (count >= pickUpsTotal)
-		{
-			winText.text = "You win!";
 		}
 	}
 
